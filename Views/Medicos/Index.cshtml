@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebApplication4.ViewModels.Medico.ListarMedicoViewModel>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Médicos</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <form asp-action="Index">
+                            <div class="input-group input-group-sm" style="width: 300px;">
+                                <input type="text" class="form-control" placeholder="Buscar médico" name="filtro" value="@ViewBag.Filtro">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <a href="/medicos/adicionar" class="btn btn-outline-primary btn-sm">Novo médico</a>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-head-fixed text-nowrap">
+                        <thead>
+                            <tr>
+                                <th style="width: 200px">CRM</th>
+                                <th>Nome</th>
+                                <th style="width: 40px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var m in Model!)
+                            {
+                                <tr>
+                                    <td>@m.CRM</td>
+                                    <td>@m.Nome</td>
+                                    <td>
+                                        <a href="/medicos/editar/@m.Id" class="btn btn-secondary btn-sm mr-1" title="Editar">
+                                            <span class="fas fa-edit"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer clearfix">
+                    <ul class="pagination pagination-sm m-0 float-right">
+                      @if(ViewBag.NumeroPagina > 1)
+                      {
+                          <li class="page-item"><a class="page-link" href="@Url.Action("Index", "Medicos", new { Filtro = ViewBag.Filtro, Pagina = ViewBag.NumeroPagina - 1 })">&laquo;</a></li>
+                      }
+                      <li class="page-item page-link">Página @ViewBag.NumeroPagina de @ViewBag.TotalPaginas</li>
+                      @if(ViewBag.NumeroPagina < ViewBag.TotalPaginas)
+                      {
+                          <li class="page-item"><a class="page-link" href="@Url.Action("Index", "Medicos", new { Filtro = ViewBag.Filtro, Pagina = ViewBag.NumeroPagina + 1 })">&raquo;</a></li>
+                      }
+                    </ul>
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</section>
+<!-- /.content -->

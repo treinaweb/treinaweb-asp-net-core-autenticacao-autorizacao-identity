@@ -1,0 +1,116 @@
+﻿@model WebApplication4.ViewModels.Consulta.EditarConsultaViewModel
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Editar consulta</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <form asp-action="Editar">
+                <div class="card">
+                    <div class="card-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Data" class="control-label"></label>
+                            <input asp-for="Data" class="form-control" />
+                            <span asp-validation-for="Data" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Tipo" class="control-label"></label>
+                            <select asp-for="Tipo" class="form-control" asp-items="@ViewBag.TiposConsulta"></select>
+                            <span asp-validation-for="Tipo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="IdMedico" class="control-label"></label>
+                            <select asp-for="IdMedico" class="form-control" asp-items="@ViewBag.Medicos"></select>
+                            <span asp-validation-for="IdMedico" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="IdPaciente" class="control-label"></label>
+                            <div class="input-group">
+                                <input type="text" asp-for="NomePaciente" class="form-control" placeholder="Localizar paciente" id="NomePaciente" readonly>
+
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-default" id="BtnLocalizarPaciente" data-toggle="modal" data-target="#ModalLocalizarPaciente">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <input asp-for="IdPaciente" class="form-control" type="hidden" id="IdPaciente" />
+                            <span asp-validation-for="IdPaciente" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </div>
+            </form>
+            <!-- /.card -->
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+<div class="modal" tabindex="-1" role="dialog" id="ModalLocalizarPaciente">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Localizar paciente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" id="TxtFiltroPaciente" class="form-control" />
+                    </div>
+                </div>
+                <table class="table table-hover table-sm" id="TbPacientes">
+                    <thead>
+                        <tr>
+                            <th style="width: 150px">CPF</th>
+                            <th>Nome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+<script>
+    $("#TxtFiltroPaciente").keyup(function(e){
+        if (e.keyCode == 13 && $(this).val().trim().length > 0){
+            $.getJSON("/pacientes/buscar?filtro=" + $(this).val(), function(resultado){
+                var linhas = resultado.map(p => "<tr data-dismiss='modal' style='cursor: pointer' title='Clique para selecionar' data-id='" + p.id + "'><td mask='999.999.999-99'>" + p.cpf + "</td><td>" + p.nome + "</td></tr>").join("");
+                $("#TbPacientes tbody").html(linhas);
+                $('td[mask]').each(function (e) {
+                    $(this).mask($(this).attr('mask'));
+                });
+                $("#TbPacientes tbody tr").click(function(){
+                    var id = $(this).attr("data-id");
+                    var nome = $(this).children()[1].innerText;
+                    console.log(nome);
+                    $("#IdPaciente").val(id);
+                    $("#NomePaciente").val(nome);
+                });
+            });
+        }
+    });
+</script>
+}
