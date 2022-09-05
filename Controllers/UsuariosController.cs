@@ -19,6 +19,18 @@ public class UsuariosController : Controller
         _userManager = userManager;
     }
 
+    public IActionResult Index()
+    {
+        var usuarios = _userManager.Users.Select(u => new ListaUsuarioViewModel
+        {
+            Id = u.Id,
+            Username = u.UserName,
+            Email = u.Email,
+            Telefone = u.PhoneNumber
+        });
+        return View(usuarios);
+    }
+
     public IActionResult Adicionar()
     {
         return View();
