@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WebApplication4.Models.Entities;
 using WebApplication4.Models.EntityConfigurations;
 
 namespace WebApplication4.Models.Contexts
 {
-    public class SisMedContext : DbContext
+    public class SisMedContext : IdentityDbContext
     {
         private readonly IConfiguration _configuration;
 
@@ -26,6 +27,7 @@ namespace WebApplication4.Models.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new PacienteConfiguration());
             modelBuilder.ApplyConfiguration(new MedicoConfiguration());
             modelBuilder.ApplyConfiguration(new ConsultaConfiguration());

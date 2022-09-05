@@ -10,12 +10,15 @@ using WebApplication4.Validators.Consulta;
 using WebApplication4.ViewModels.Consulta;
 using WebApplication4.Validators.MonitoramentoPaciente;
 using WebApplication4.ViewModels.MonitoramentoPaciente;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 builder.Services.AddDbContext<SisMedContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<SisMedContext>();
 builder.Services.AddScoped<IValidator<AdicionarMedicoViewModel>, AdicionarMedicoValidator>();
 builder.Services.AddScoped<IValidator<EditarMedicoViewModel>, EditarMedicoValidator>();
 builder.Services.AddScoped<IValidator<AdicionarPacienteViewModel>, AdicionarPacienteValidator>();
@@ -40,6 +43,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
