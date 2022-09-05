@@ -46,7 +46,14 @@
                                   <span class="fas fa-edit"></span>
                                 </a>
 
-                                <a href="#" class="btn btn-sm btn-danger" title="Excluir">
+                                <a
+                                  asp-controller="Usuarios"
+                                  asp-action="Excluir"
+                                  asp-route-id="@usuario.Id"
+                                  onclick="return confirm('Tem certeza que deseja excluir o usuario?')"
+                                  class="btn btn-sm btn-danger"
+                                  title="Excluir"
+                                >
                                   <span class="fas fa-trash"></span>
                                 </a>
                               </td>

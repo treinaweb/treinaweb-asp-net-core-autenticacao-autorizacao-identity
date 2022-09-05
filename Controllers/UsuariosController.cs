@@ -59,6 +59,18 @@ public class UsuariosController : Controller
                 .ForEach(e => ModelState.AddModelError(string.Empty, e.Description));
             return View(dados);
         }
-        return RedirectToAction(nameof(Adicionar));
+        return RedirectToAction(nameof(Index));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Excluir(string id)
+    {
+        var usuario = _userManager.Users.FirstOrDefault(u => u.Id == id);
+        if (usuario is null)
+        {
+            return NotFound();
+        }
+        await _userManager.DeleteAsync(usuario);
+        return RedirectToAction(nameof(Index));
     }
 }
