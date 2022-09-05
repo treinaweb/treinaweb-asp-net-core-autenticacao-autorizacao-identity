@@ -11,6 +11,8 @@ using WebApplication4.ViewModels.Consulta;
 using WebApplication4.Validators.MonitoramentoPaciente;
 using WebApplication4.ViewModels.MonitoramentoPaciente;
 using Microsoft.AspNetCore.Identity;
+using WebApplication4.ViewModels.Usuario;
+using WebApplication4.Validators.Usuario;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,7 @@ builder.Services.AddScoped<IValidator<AdicionarConsultaViewModel>, AdicionarCons
 builder.Services.AddScoped<IValidator<EditarConsultaViewModel>, EditarConsultaValidator>();
 builder.Services.AddScoped<IValidator<AdicionarMonitoramentoViewModel>, AdicionarMonitoramentoPacienteValidator>();
 builder.Services.AddScoped<IValidator<EditarMonitoramentoViewModel>, EditarMonitoramentoPacienteValidator>();
+builder.Services.AddScoped<IValidator<AdicionarUsuarioViewModel>, AdicionarUsuarioValidator>();
 
 var app = builder.Build();
 
