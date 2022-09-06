@@ -30,6 +30,7 @@ builder.Services.AddScoped<IValidator<EditarConsultaViewModel>, EditarConsultaVa
 builder.Services.AddScoped<IValidator<AdicionarMonitoramentoViewModel>, AdicionarMonitoramentoPacienteValidator>();
 builder.Services.AddScoped<IValidator<EditarMonitoramentoViewModel>, EditarMonitoramentoPacienteValidator>();
 builder.Services.AddScoped<IValidator<AdicionarUsuarioViewModel>, AdicionarUsuarioValidator>();
+builder.Services.AddScoped<IValidator<EditarUsuarioViewModel>, EditarUsuarioValidator>();
 
 var app = builder.Build();
 

@@ -42,7 +42,13 @@
                               <td>@usuario.Email</td>
                               <td>@usuario.Telefone</td>
                               <td>
-                                <a href="#" class="btn btn-sm btn-secondary mr-1" title="Editar">
+                                <a
+                                  asp-controller="Usuarios"
+                                  asp-action="Editar"
+                                  asp-route-id="@usuario.Id"
+                                  class="btn btn-sm btn-secondary mr-1"
+                                  title="Editar"
+                                >
                                   <span class="fas fa-edit"></span>
                                 </a>
 
