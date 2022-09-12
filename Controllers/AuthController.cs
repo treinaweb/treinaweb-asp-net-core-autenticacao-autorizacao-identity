@@ -34,4 +34,10 @@ public class AuthController : Controller
         }
         return RedirectToAction("Index", "Home");
     }
+
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+        return RedirectToAction(nameof(Login));
+    }
 }
