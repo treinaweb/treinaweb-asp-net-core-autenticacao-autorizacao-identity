@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using WebApplication4.ViewModels.Consulta;
 
 namespace WebApplication4.Controllers
 {
+    [Authorize]
     public class ConsultasController : Controller
     {
         private readonly SisMedContext _context;

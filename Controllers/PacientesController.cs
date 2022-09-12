@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
 using WebApplication4.Models.Contexts;
@@ -8,6 +9,7 @@ using WebApplication4.ViewModels.Paciente;
 
 namespace WebApplication4.Controllers
 {
+    [Authorize]
     public class PacientesController : Controller
     {
         private readonly SisMedContext _context;
@@ -35,7 +37,7 @@ namespace WebApplication4.Controllers
                                                   Nome = p.Nome,
                                                   CPF = p.CPF
                                               });
-                                              
+
 
             ViewBag.NumeroPagina = pagina;
             ViewBag.TotalPaginas = Math.Ceiling((decimal)pacientes.Count() / TAMANHO_PAGINA);
@@ -80,7 +82,7 @@ namespace WebApplication4.Controllers
         public ActionResult Editar(int id)
         {
             var paciente = _context.Pacientes.Find(id);
-                                             
+
             if (paciente != null)
             {
                 var informacoesComplementares = _context.InformacoesComplementaresPaciente.FirstOrDefault(i => i.IdPaciente == id);
@@ -141,7 +143,7 @@ namespace WebApplication4.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            
+
             return NotFound();
         }
 
@@ -160,7 +162,7 @@ namespace WebApplication4.Controllers
                     DataNascimento = paciente.DataNascimento
                 });
             }
-            
+
             return NotFound();
         }
 
@@ -185,7 +187,7 @@ namespace WebApplication4.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            
+
             return NotFound();
         }
 

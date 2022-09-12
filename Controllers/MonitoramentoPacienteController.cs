@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication4.Models.Contexts;
 using WebApplication4.Models.Entities;
@@ -7,6 +8,7 @@ using WebApplication4.ViewModels.MonitoramentoPaciente;
 
 namespace WebApplication4.Controllers
 {
+    [Authorize]
     [Route("Monitoramento")]
     public class MonitoramentoPacienteController : Controller
     {
@@ -31,7 +33,7 @@ namespace WebApplication4.Controllers
                                          {
                                              Id = m.Id,
                                              PressaoArterial = m.PressaoArterial,
-                                             SaturacaoOxigenio = m.SaturacaoOxigenio,  
+                                             SaturacaoOxigenio = m.SaturacaoOxigenio,
                                              FrequenciaCardiaca = m.FrequenciaCardiaca,
                                              Temperatura = m.Temperatura,
                                              DataAfericao = m.DataAfericao
@@ -61,7 +63,7 @@ namespace WebApplication4.Controllers
                 validacao.AddToModelState(ModelState, "");
                 return View(dados);
             }
-            
+
             try
             {
                 var monitoramento = new MonitoramentoPaciente
@@ -96,9 +98,9 @@ namespace WebApplication4.Controllers
                 return View(new EditarMonitoramentoViewModel
                 {
                     Id = id,
-                    DataAfericao = monitoramento.DataAfericao,  
+                    DataAfericao = monitoramento.DataAfericao,
                     Temperatura = monitoramento.Temperatura,
-                    PressaoArterial = monitoramento.PressaoArterial,    
+                    PressaoArterial = monitoramento.PressaoArterial,
                     FrequenciaCardiaca = monitoramento.FrequenciaCardiaca,
                     SaturacaoOxigenio = monitoramento.SaturacaoOxigenio
                 });
@@ -127,7 +129,7 @@ namespace WebApplication4.Controllers
             {
                 var monitoramento = _context.MonitoramentosPaciente.Find(id);
 
-                if(monitoramento != null)
+                if (monitoramento != null)
                 {
                     monitoramento.Temperatura = dados.Temperatura;
                     monitoramento.SaturacaoOxigenio = dados.SaturacaoOxigenio;
@@ -154,7 +156,7 @@ namespace WebApplication4.Controllers
         {
             var monitoramento = _context.MonitoramentosPaciente.Find(id);
 
-            if (monitoramento!= null)
+            if (monitoramento != null)
             {
                 return View(new EditarMonitoramentoViewModel
                 {
@@ -181,16 +183,16 @@ namespace WebApplication4.Controllers
             try
             {
                 var monitoramento = _context.MonitoramentosPaciente.Find(id);
-               
-               if(monitoramento != null)
-               {   
+
+                if (monitoramento != null)
+                {
                     _context.MonitoramentosPaciente.Remove(monitoramento);
 
                     _context.SaveChanges();
 
                     return RedirectToAction(nameof(Index), new { IdPaciente = monitoramento.IdPaciente });
-               }
-               else return NotFound();
+                }
+                else return NotFound();
             }
             catch
             {

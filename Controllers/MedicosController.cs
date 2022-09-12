@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication4.Models.Contexts;
 using WebApplication4.Models.Entities;
@@ -8,6 +9,7 @@ using WebApplication4.ViewModels.Medico;
 
 namespace WebApplication4.Controllers
 {
+    [Authorize]
     public class MedicosController : Controller
     {
         private readonly SisMedContext _context;
@@ -90,7 +92,7 @@ namespace WebApplication4.Controllers
                     Nome = medico.Nome
                 });
             }
-            
+
             return NotFound();
         }
 
@@ -106,10 +108,10 @@ namespace WebApplication4.Controllers
                 validacao.AddToModelState(ModelState, "");
                 return View(dados);
             }
-            
+
             var medico = _context.Medicos.Find(id);
-                
-            if(medico != null)
+
+            if (medico != null)
             {
                 medico.CRM = Regex.Replace(dados.CRM, "[^0-9]", "");
                 medico.Nome = dados.Nome;
@@ -140,7 +142,7 @@ namespace WebApplication4.Controllers
                     Nome = medico.Nome
                 });
             }
-            
+
             return NotFound();
         }
 
@@ -157,7 +159,7 @@ namespace WebApplication4.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            
+
             return NotFound();
         }
     }

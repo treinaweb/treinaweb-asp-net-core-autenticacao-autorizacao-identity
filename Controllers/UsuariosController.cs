@@ -1,11 +1,13 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication4.ViewModels.Usuario;
 
 namespace WebApplication4.Controllers;
 
+[Authorize]
 public class UsuariosController : Controller
 {
     private readonly IValidator<AdicionarUsuarioViewModel> _adicionarUsuarioValidator;
