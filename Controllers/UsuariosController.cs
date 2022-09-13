@@ -13,15 +13,18 @@ public class UsuariosController : Controller
     private readonly IValidator<AdicionarUsuarioViewModel> _adicionarUsuarioValidator;
     private readonly IValidator<EditarUsuarioViewModel> _editarUsuarioValidator;
     private readonly UserManager<IdentityUser> _userManager;
+    private readonly RoleManager<IdentityRole> _roleManager;
 
     public UsuariosController(
         IValidator<AdicionarUsuarioViewModel> adicionarUsuarioValidator,
         UserManager<IdentityUser> userManager,
-        IValidator<EditarUsuarioViewModel> editarUsuarioValidator)
+        IValidator<EditarUsuarioViewModel> editarUsuarioValidator,
+        RoleManager<IdentityRole> roleManager)
     {
         _adicionarUsuarioValidator = adicionarUsuarioValidator;
         _userManager = userManager;
         _editarUsuarioValidator = editarUsuarioValidator;
+        _roleManager = roleManager;
     }
 
     public IActionResult Index()
@@ -38,7 +41,7 @@ public class UsuariosController : Controller
 
     public IActionResult Adicionar()
     {
-        return View();
+        return View(new AdicionarUsuarioViewModel());
     }
 
     [HttpPost]
@@ -50,6 +53,11 @@ public class UsuariosController : Controller
         {
             validacaoResult.AddToModelState(ModelState, string.Empty);
             return View(dados);
+        }
+        if (!await _roleManager.RoleExistsAsync(dados.Role))
+        {
+            var role = new IdentityRole(dados.Role);
+            await _roleManager.CreateAsync(role);
         }
         var user = new IdentityUser
         {
@@ -64,10 +72,11 @@ public class UsuariosController : Controller
                 .ForEach(e => ModelState.AddModelError(string.Empty, e.Description));
             return View(dados);
         }
+        await _userManager.AddToRoleAsync(user, dados.Role);
         return RedirectToAction(nameof(Index));
     }
 
-    public IActionResult Editar(string id)
+    public async Task<IActionResult> Editar(string id)
     {
         var usuario = _userManager.Users.FirstOrDefault(u => u.Id == id);
         if (usuario is null)
@@ -78,7 +87,8 @@ public class UsuariosController : Controller
         {
             Username = usuario.UserName,
             Email = usuario.Email,
-            Telefone = usuario.PhoneNumber
+            Telefone = usuario.PhoneNumber,
+            Role = (await _userManager.GetRolesAsync(usuario)).FirstOrDefault() ?? string.Empty
         };
         return View(dados);
     }
@@ -98,6 +108,11 @@ public class UsuariosController : Controller
         {
             return NotFound();
         }
+        if (!await _roleManager.RoleExistsAsync(dados.Role))
+        {
+            var role = new IdentityRole(dados.Role);
+            await _roleManager.CreateAsync(role);
+        }
         usuario.UserName = dados.Username;
         usuario.Email = dados.Email;
         usuario.PhoneNumber = dados.Telefone;
@@ -108,6 +123,8 @@ public class UsuariosController : Controller
                 .ForEach(e => ModelState.AddModelError(string.Empty, e.Description));
             return View(dados);
         }
+        await _userManager.RemoveFromRolesAsync(usuario, await _userManager.GetRolesAsync(usuario));
+        await _userManager.AddToRoleAsync(usuario, dados.Role);
         return RedirectToAction(nameof(Index));
     }
 
