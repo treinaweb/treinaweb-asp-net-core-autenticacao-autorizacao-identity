@@ -19,7 +19,7 @@ public class AdicionarUsuarioValidator : AbstractValidator<AdicionarUsuarioViewM
             .EmailAddress().WithMessage("O campo {PropertyName} está em um formato inválido");
         RuleFor(x => x.Senha)
             .NotEmpty().WithMessage("O campo {PropertyName} é obrigatório")
-            .MinimumLength(6).WithMessage("O campo {PropertyName} deve ter no mínimo {MinLength} caracteres");
+            .MinimumLength(3).WithMessage("O campo {PropertyName} deve ter no mínimo {MinLength} caracteres");
         RuleFor(x => x.ConfirmacaoSenha)
             .NotEmpty().WithMessage("O campo {PropertyName} é obrigatório")
             .Equal(x => x.Senha).WithMessage("O campo {PropertyName} deve ser igual ao campo Senha");
