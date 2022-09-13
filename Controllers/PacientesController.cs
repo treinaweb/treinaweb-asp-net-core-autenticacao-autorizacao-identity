@@ -9,7 +9,7 @@ using WebApplication4.ViewModels.Paciente;
 
 namespace WebApplication4.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     public class PacientesController : Controller
     {
         private readonly SisMedContext _context;

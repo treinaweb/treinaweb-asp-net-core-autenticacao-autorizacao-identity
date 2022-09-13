@@ -11,7 +11,7 @@ using WebApplication4.ViewModels.Consulta;
 
 namespace WebApplication4.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     public class ConsultasController : Controller
     {
         private readonly SisMedContext _context;

@@ -8,7 +8,7 @@ using WebApplication4.ViewModels.MonitoramentoPaciente;
 
 namespace WebApplication4.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [Route("Monitoramento")]
     public class MonitoramentoPacienteController : Controller
     {

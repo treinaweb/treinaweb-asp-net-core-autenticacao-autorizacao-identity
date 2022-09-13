@@ -7,7 +7,7 @@ using WebApplication4.ViewModels.Usuario;
 
 namespace WebApplication4.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin")]
 public class UsuariosController : Controller
 {
     private readonly IValidator<AdicionarUsuarioViewModel> _adicionarUsuarioValidator;

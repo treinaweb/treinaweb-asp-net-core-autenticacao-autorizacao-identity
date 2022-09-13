@@ -9,7 +9,7 @@ using WebApplication4.ViewModels.Medico;
 
 namespace WebApplication4.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     public class MedicosController : Controller
     {
         private readonly SisMedContext _context;

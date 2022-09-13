@@ -5,7 +5,7 @@ using WebApplication4.Models;
 
 namespace WebApplication4.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     public class HomeController : Controller
     {
         public IActionResult Index()
