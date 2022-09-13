@@ -26,7 +26,7 @@ public class AuthController : Controller
         {
             return View(dados);
         }
-        var result = await _signInManager.PasswordSignInAsync(dados.Username, dados.Senha, false, false);
+        var result = await _signInManager.PasswordSignInAsync(dados.Username, dados.Senha, dados.Lembrar, false);
         if (!result.Succeeded)
         {
             ModelState.AddModelError(string.Empty, "Usuário ou senha inválidos");
