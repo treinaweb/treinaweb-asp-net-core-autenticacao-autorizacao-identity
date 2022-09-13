@@ -44,6 +44,12 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
+                <div class="user-panel mt-3 pb-3 mb-3 d-fex">
+                    <div class="info">
+                        <a>@User.Identity?.Name</a>
+                    </div>
+                </div>
+
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -70,6 +76,15 @@
                                         <p>Médicos</p>
                                     </a>
                                 </li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li class="nav-item">
+                                        <a href="/usuarios" class="nav-link">
+                                            <i class="fas fa-user nav-icon"></i>
+                                            <p>Usuários</p>
+                                        </a>
+                                    </li>
+                                }
                             </ul>
                         </li>
                         <li class="nav-item menu-open">

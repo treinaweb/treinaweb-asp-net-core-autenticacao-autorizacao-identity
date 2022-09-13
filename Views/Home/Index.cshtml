@@ -44,5 +44,18 @@
                 </div>
             </div>
         </div>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box shadow-sm">
+                    <span class="info-box-icon bg-primary"><i class="fas fa-user"></i></span>
+
+                    <div class="info-box-content">
+                    <span class="info-box-text">Usuários</span>
+                    <span class="info-box-number">@Html.ActionLink("Cadastrar", "Adicionar", "Usuarios")</span>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </section>
