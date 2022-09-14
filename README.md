@@ -1,31 +1,21 @@
-# Projeto ASP.NET Core MVC para gerenciamento de clínicas
+# TreinaWeb: Curso "ASP.NET Core - Autenticação e Autorização com Identity"
 
-## Como executar o projeto
+## Lista de Commits
 
-**Clonar o repositório**
-```
-git clone https://github.com/joelrlneto/tw-api.git
-```
-
-**Clonar o repositório**
-```
-dotnet restore
-```
-
-**Clonar o repositório**
-```
-dotnet run
-```
-
-## Como testar a API
-
-**Acessar a interface de teste do Swagger***
-A UI do Swagger estará disponível na URL https://localhost:7096/swagger (a porta pode variar e deve ser observada no terminal ao executar o projeto).
-
-**Consumir os endpoints**
-Sugestão de ordem para testar a aplicação:
-
-1) Criar, editar e excluir pacientes
-2) Criar, editar e excluir médicos
-3) Criar, editar e excluir monitoramentos do paciente
-4) Criar, editar e excluir consultas
+| Aula    | Video                                                                         | Commit                                                                     | Link                                                                                                                                                   |
+| ------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Aula 03 | Vídeo 04 - Instalando e configurando o ASP.NET Core Identity em nosso projeto | 03:04 - instalando e configurando o ASP.NET Core Identity em nosso projeto | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/0c7f361e67104458ab138aff04f16880fffc887a.zip) |
+| Aula 04 | Vídeo 05 - Criando a funcionalidade de cadastro de usuários parte 1           | 04:05 - criando a funcionalidade de cadastro de usuários parte 1           | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/4a521613d611ddbf252a983ba8e349425c8d6e92.zip) |
+| Aula 04 | Vídeo 06 - Criando a funcionalidade de cadastro de usuário parte 2            | 04:06 - criando a funcionalidade de cadastro de usuário parte 2            | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/a36e7ca11be3385fab2356891ad7c5efe82615dd.zip) |
+| Aula 04 | Vídeo 07 - Criando a funcionalidade de listagem de usuários                   | 04:07 - criando a funcionalidade de listagem de usuários                   | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/0eb71efd4f391179a40de887efff39a1efb4006b.zip) |
+| Aula 04 | Vídeo 09 - Criando a funcionalidade de edição de usuários                     | 04:09 - criando a funcionalidade de edição de usuários                     | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/1c3aa9845bb9a843e77b43d4ce2cdee29d59a36d.zip) |
+| Aula 04 | Vídeo 09 - Criando a funcionalidade de edição de usuários                     | 04:09 - criando a funcionalidade de edição de usuários                     | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/28d1329c1c83ddd2c35b9a05db3562c1dcb02526.zip) |
+| Aula 05 | Vídeo 10 - Bloqueando as páginas para usuários não autenticados               | 05:10 - bloqueando as páginas para usuários não autenticados               | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/95bac62d2296ed9097240bf65d6e86e83a4585c1.zip) |
+| Aula 05 | Vídeo 11 - Criando a página de login                                          | 05:11 - criando a página de login                                          | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/be1becca7340d81e76d8f00766b7683a9eec6645.zip) |
+| Aula 05 | Vídeo 12 - Implementando a funcionalidade de logout                           | 05:12 - implementando a funcionalidade de logout                           | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/7f25846971380794f64fb25eadccd1a6a93b3d7b.zip) |
+| Aula 06 | Vídeo 13 - Alterando o comportamento padrão do Identity                       | 06:13 - alterando o comportamento padrão do Identity                       | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/4ba9bf853d831e55a991b02d69dd8c50e7f78a6f.zip) |
+| Aula 07 | Vídeo 14 - Criando usuários com diferentes perfis                             | 07:14 - criando usuários com diferentes perfis                             | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/1ec89f4dcb98ed77f943f70935325739840c6fce.zip) |
+| Aula 07 | Vídeo 15 - Bloqueando páginas de acordo com o perfil do usuário               | 07:15 - bloqueando páginas de acordo com o perfil do usuário               | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/9dfa668780c5cd9baecdaa891cd593f937f82b00.zip) |
+| Aula 08 | Vídeo 16 - Exibindo informaçãoes do usuário autenticado na View               | 08:16 - exibindo informaçãoes do usuário autenticado na View               | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/18634084ba1ffcfc64b0ce94cfa5f84b5f27f6a2.zip) |
+| Aula 09 | Vídeo 17 - Persistindo a autenticação do usuário                              | 09:17 - persistindo a autenticação do usuário                              | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/683b390f987958ef31b21591ed6ec772ded487c1.zip) |
+| Aula 10 | Vídeo 18 - Implementando a alteração de senha                                 | 10:18 - implementando a alteração de senha                                 | [Download](https://github.com/treinaweb/treinaweb-asp-net-core-autenticacao-autorizacao-identity/archive/bbd4d69d5043ce6d8c0d724d074ad077f086e143.zip) |
