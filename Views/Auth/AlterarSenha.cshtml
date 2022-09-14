@@ -1,0 +1,50 @@
+@model WebApplication4.ViewModels.Auth.AlterarSenhaViewModel
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Alterar senha</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                <div class="card">
+                    <div class="card-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="SenhaAtual" class="control-label"></label>
+                            <input asp-for="SenhaAtual" class="form-control" type="password"/>
+                            <span asp-validation-for="SenhaAtual" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="NovaSenha" class="control-label"></label>
+                            <input asp-for="NovaSenha" class="form-control" type="password"/>
+                            <span asp-validation-for="NovaSenha" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ConfirmacaoNovaSenha" class="control-label"></label>
+                            <input asp-for="ConfirmacaoNovaSenha" class="form-control" type="password"/>
+                            <span asp-validation-for="ConfirmacaoNovaSenha" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </div>
+            </form>
+            <!-- /.card -->
+        </div>
+    </div>
+</section>
+<!-- /.content -->
